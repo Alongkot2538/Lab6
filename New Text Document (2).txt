@@ -1,0 +1,55 @@
+bear
+
+import React, {Component} from 'react';
+import { connect } from 'react-redux'
+import {getBears} from './App'
+
+class Bear extends Component {
+
+   componentDidMount() {
+       console.log('props',this.props)
+       this.props.getBears()
+   }
+
+   renderBears = () => {
+
+    console.log('hi',this.props.bears.login)
+     return(<ul> Username: {this.props.bears.login}<br/>
+      ID: {this.props.bears.id}<br/>
+     
+
+
+      </ul>
+      )
+    
+
+      
+   }
+
+   render() {
+       return (
+           <div style={{margin: '20px'}}>
+               <h3>Render</h3>
+               <ul>
+
+                   {this.renderBears()}
+
+
+
+               </ul>
+           </div>
+       );
+   }
+}
+
+const mapStateToProps =  ({bears}) => {
+   return {bears}
+}
+
+const mapDispatchToProps = (dispatch) => {
+   return {
+       getBears: () => dispatch(getBears())
+   }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Bear);
